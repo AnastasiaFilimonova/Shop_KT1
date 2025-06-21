@@ -1,0 +1,68 @@
+﻿<Window x:Class="Shop_KT1.Products"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shop_KT1"
+        mc:Ignorable="d"
+        Title="Products" Height="600" Width="800"
+        MinHeight="600" MinWidth="800"
+        Background="#FFB5D5CA">
+
+    <Grid Width="800" Height="600">
+        <StackPanel Margin="10">
+
+
+            <TextBlock Text="Фиксация факта производства изделия" 
+                       FontSize="20" FontWeight="Bold" 
+                       Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Изделие:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox x:Name="ProductComboBox" Width="200" Margin="0,0,20,0"
+                          ItemsSource="{Binding Products}" DisplayMemberPath="Name"/>
+
+                <TextBlock Text="Размер:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox x:Name="SizeComboBox" Width="100"
+                          ItemsSource="{Binding Sizes}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                <TextBlock Text="Количество произведённых изделий:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="QuantityTextBox" Width="100" VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Таблица использования материалов -->
+            <TextBlock Text="Фактически использованные материалы:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <DataGrid x:Name="UsedMaterialsGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+                      Height="280" Width="780"
+                      BorderThickness="1" BorderBrush="Black" GridLinesVisibility="All"
+                      ItemsSource="{Binding UsedMaterials}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Материал" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="План (м/шт.)" Binding="{Binding PlannedAmount}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Факт (м/шт.)" Binding="{Binding ActualAmount}" />
+                    <DataGridTextColumn Header="Отклонение (%)" Binding="{Binding Deviation}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <TextBlock Text="Отклонение более 15% будет выделено красным." Foreground="Red" FontStyle="Italic" Margin="0,5,0,10"/>
+
+  
+            <TextBlock Text="{Binding TotalCost, StringFormat='Себестоимость: {0:C}'}"
+                       FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,10,10"/>
+
+          
+            
+
+        </StackPanel>
+        <Border BorderThickness="1" Padding="20" Background="#FFE0A9AF" Height="88" Margin="0,495,0,17">
+            <DockPanel>
+                <Button Content="Сохранить производство" Width="180" Height="30" DockPanel.Dock="Right"
+                Command="{Binding SaveProductionCommand}"/>
+                <Button Content="Назад" Width="120" Height="30" DockPanel.Dock="Left" Margin="0,0,10,0" Click="BackButton_Click"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>
