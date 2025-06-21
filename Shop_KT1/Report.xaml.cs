@@ -175,5 +175,4 @@ namespace Shop_KT1
         }
     }
 }
-
     
