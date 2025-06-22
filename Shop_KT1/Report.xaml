@@ -6,24 +6,14 @@
         xmlns:local="clr-namespace:Shop_KT1"
         mc:Ignorable="d"
         Title="Report" Height="600" Width="800" MinHeight="600" MinWidth="800" Background="#FFB5D5CA">
-
-    <Grid Width="800" Height="600">
-        <StackPanel VerticalAlignment="Stretch">
-
-            <!-- Заголовок -->
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
             <TextBlock Text="Отчёт по остаткам материалов и изделий" 
                        FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
-
-            <!-- Выбор материалов -->
             <TextBlock Text="Выберите материалы / изделия:" Margin="0,0,0,5" FontWeight="SemiBold"/>
             <ListBox x:Name="MaterialListBox" SelectionMode="Extended" Height="64" Margin="0,0,0,15"
                      DisplayMemberPath="Name" Width="776"/>
-
-            <!-- Кнопка обновления -->
-            <Button Content="Показать остатки" Width="140" Height="30" Margin="0,0,0,15" HorizontalAlignment="Left" Click="ShowStockReport_Click"
-                  />
-
-            <!-- Таблица остатков -->
+            <Button Content="Показать остатки" Width="140" Height="30" Click="ShowStockReport_Click" Margin="0,0,0,10"/>
             <DataGrid x:Name="StockReportGrid" AutoGenerateColumns="False" CanUserAddRows="False" Height="285"
                       RowBackground="#FFD1EEFC" AlternatingRowBackground="#FFFFFCD6"
                       BorderThickness="1" BorderBrush="Black" GridLinesVisibility="All"
@@ -34,19 +24,13 @@
                     <DataGridTextColumn Header="Стоимость (руб.)" Binding="{Binding Price, StringFormat=N2}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <!-- Нижняя панель с кнопкой печати -->
-            <Border BorderThickness="1" Padding="20" Background="#FFE0A9AF" Height="107" Margin="0,15,0,15">
-                <DockPanel>
-                    <Button Content="Предпросмотр" Width="120" Height="30" Margin="10,0,0,0"
-        DockPanel.Dock="Right" Click="PreviewReport_Click"/>
-
-                    <Button Content="Печать отчёта" Width="120" Height="30" Click="PrintReport_Click" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                    <Button Content="Назад" Width="120" Height="30" DockPanel.Dock="Left" Margin="0,0,10,0" Click="BackButton_Click"/>
-                </DockPanel>
-            </Border>
-
-
         </StackPanel>
+        <Border BorderThickness="1" Padding="20" Background="#FFE0A9AF" Height="87" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <DockPanel LastChildFill="False">
+                <Button Content="Назад" Width="120" Height="30" DockPanel.Dock="Left" Margin="10,0,10,0" Click="BackButton_Click"/>
+                <Button Content="Печать отчёта" Width="120" Height="30" DockPanel.Dock="Right" Margin="10,0,10,0" Click="PrintReport_Click"/>
+            </DockPanel>
+        </Border>
     </Grid>
 </Window>
 

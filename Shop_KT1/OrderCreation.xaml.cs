@@ -26,19 +26,15 @@ namespace Shop_KT1
         private List<Product> Products;
         private readonly int currentCustomerId;
         private readonly ApplicationContext db = new();
-
         public OrderCreation(int customerId)
         {
             InitializeComponent();
             currentCustomerId = customerId;
-
             LoadProducts();
             OrderItemsGrid.ItemsSource = OrderItems;
         }
-
         private void LoadProducts()
         {
-            // Загружаем продукты с их материалами и стоимостью материалов
             Products = db.Products
                          .Include(p => p.Materials)
                              .ThenInclude(pm => pm.Material)
@@ -46,7 +42,6 @@ namespace Shop_KT1
 
             ProductComboBox.ItemsSource = Products;
         }
-
         private decimal CalculateProductCost(Product product)
         {
             decimal totalCost = 0;
@@ -58,11 +53,8 @@ namespace Shop_KT1
 
                 totalCost += (decimal)pm.Quantity * pm.Material.Price;
             }
-
             return totalCost;
         }
-
-
         private void AddToOrder_Click(object sender, RoutedEventArgs e)
         {
             if (ProductComboBox.SelectedItem is not Product selectedProduct)
@@ -70,15 +62,12 @@ namespace Shop_KT1
                 MessageBox.Show("Выберите изделие.");
                 return;
             }
-
             if (!int.TryParse(QuantityTextBox.Text, out int quantity) || quantity <= 0)
             {
                 MessageBox.Show("Введите корректное количество.");
                 return;
             }
-
             decimal calculatedCost = CalculateProductCost(selectedProduct);
-
             var existingItem = OrderItems.FirstOrDefault(i => i.ProductId == selectedProduct.ProductID);
             if (existingItem != null)
             {
@@ -96,16 +85,13 @@ namespace Shop_KT1
                     Total = calculatedCost * quantity
                 });
             }
-
             UpdateTotalPrice();
         }
-
         private void UpdateTotalPrice()
         {
             decimal total = OrderItems.Sum(i => i.Total);
             TotalTextBlock.Text = $"Итоговая стоимость: {total:C}";
         }
-
         private void SubmitOrder_Click(object sender, RoutedEventArgs e)
         {
             if (!OrderItems.Any())
@@ -113,7 +99,6 @@ namespace Shop_KT1
                 MessageBox.Show("Добавьте хотя бы одно изделие в заказ.");
                 return;
             }
-
             var newOrder = new Order
             {
                 CreatedOrder = DateTime.Now,
@@ -122,7 +107,6 @@ namespace Shop_KT1
                 Items = new List<OrderItem>(),
                 TotalPrice = OrderItems.Sum(i => i.Total)
             };
-
             foreach (var item in OrderItems)
             {
                 newOrder.Items.Add(new OrderItem
@@ -132,13 +116,10 @@ namespace Shop_KT1
                     ItemPrice = item.Price
                 });
             }
-
             db.Orders.Add(newOrder);
             db.SaveChanges();
             MessageBox.Show("Заказ успешно оформлен!");
-            Close();
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Menu menu = new Menu();
@@ -146,7 +127,6 @@ namespace Shop_KT1
             this.Close();
         }
     }
-
     public class OrderItemDisplay
     {
         public int ProductId { get; set; }

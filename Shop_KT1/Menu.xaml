@@ -13,7 +13,6 @@
             <Button Content="Отчёты" Width="260" Height="50" Margin="0,10" Click="Button_Click_1" />
             <Button Content="Список заказов" Width="260" Height="50" Margin="0,10" Click="Button_Click_2" />
             <Button Content="Оформление заказов" Width="260" Height="50" Margin="0,10" Click="Button_Click_3" />
-            <Button Content="Производство изделий" Width="260" Height="50" Margin="0,10" Click="Button_Click_4" />
         </StackPanel>
         <Border Background="#FFE0A9AF" Height="90" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0">
             <Button x:Name="ExitButton" Content="Выход" Width="100" Height="30" Margin="20,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>

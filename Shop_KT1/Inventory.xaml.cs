@@ -87,7 +87,6 @@ namespace Shop_KT1
                 db.SaveChanges();
             }
             MessageBox.Show("Инвентаризация сохранена успешно.");
-            Close();
         }
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {

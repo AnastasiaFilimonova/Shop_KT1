@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TextBlock Text="Инвентаризация склада" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="InventoryGrid" ItemsSource="{Binding Items}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10" Height="450" RowBackground="#FFD1EEFC" AlternatingRowBackground="#FFFFFCD6" BorderThickness="1" BorderBrush="Black" GridLinesVisibility="All">
+            <DataGrid x:Name="InventoryGrid" ItemsSource="{Binding Items}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10" Height="434" RowBackground="#FFD1EEFC" AlternatingRowBackground="#FFFFFCD6" BorderThickness="1" BorderBrush="Black" GridLinesVisibility="All">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Учётное количество" Binding="{Binding SystemAmount}" IsReadOnly="True"/>

@@ -21,17 +21,14 @@ namespace Shop_KT1
     public partial class OrderList : Window
     {
         public ObservableCollection<OrderViewModel> Orders { get; set; }
-
         public OrderList()
         {
             InitializeComponent();
             Orders = new ObservableCollection<OrderViewModel>();
             DataContext = this;
-
             LoadOrders();
             OrdersGrid.ItemsSource = Orders;
         }
-
         private void LoadOrders()
         {
             using (var db = new ApplicationContext())
@@ -54,7 +51,6 @@ namespace Shop_KT1
                 }
             }
         }
-
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Menu menu = new Menu();
@@ -72,4 +68,3 @@ namespace Shop_KT1
         public string ManagerLogin { get; set; }
     }
 }
-
